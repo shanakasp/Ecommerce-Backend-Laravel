@@ -1,13 +1,21 @@
 <?php
 
 namespace App\Http\Controllers;
+use Illuminate\Support\Facades\Hash;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
-    public function register()
+    public function register(Request $req)
     {
-        return "hello";
+        $user = new User;
+        $user->name = $req->name;
+        $user->email = $req->email;
+        $user->password = hash::make($req->password);
+        $user->save();
+
+        return  $user ;
     }
 }
