@@ -18,4 +18,26 @@ class UserController extends Controller
 
         return  $user ;
     }
+
+     function login(Request $req)
+    {
+        $user = User::where('email', $req->email)->first();
+        if(!$user || !Hash::check($req->password, $user->password))
+        {
+            return "Login failed";
+        }
+        return $user;
+    }
+    function show()
+    {
+        return User::all();
+    }
+    function showuser($id)
+    {
+        return User::find($id);
+    }
+    function update(Request $req, $id)
+    {
+        return "login API";
+    }
 }
