@@ -32,10 +32,17 @@ class UserController extends Controller
     {
         return User::all();
     }
-    function showuser($id)
+     function showuser($id)
     {
-        return User::find($id);
+        $user = User::find($id);
+
+        if ($user) {
+            return response()->json($user, 200);
+        } else {
+            return response()->json(['error' => 'User not found'], 404);
+        }
     }
+
     function update(Request $req, $id)
     {
         return "login API";
