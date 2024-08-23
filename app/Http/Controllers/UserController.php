@@ -26,7 +26,7 @@ class UserController extends Controller
         {
             return "Login failed";
         }
-        return $user;
+        return response()-> json(['message' => 'Logging successful', 'user' => $user],200);
     }
     function show()
     {
